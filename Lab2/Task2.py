@@ -14,9 +14,9 @@ class MyWidget(QMainWindow, Ui_MainWindow):
     def run(self):
         f = open('Log.txt', 'a')
         date = self.calendarWidget.selectedDate()
-        data = self.timeEdit.text() + " " + date.toString('dd-MM-yyyy') + " " + self.lineEdit.text()
-        self.listWidget.isSortingEnabled()
+        data = date.toString('yyyy-MM-dd') + " " + self.timeEdit.text()  + " " + self.lineEdit.text()
         self.listWidget.insertItem(1, data+"\n")
+        self.listWidget.sortItems()
         f.write(data+"\n")
         f.close()
 
