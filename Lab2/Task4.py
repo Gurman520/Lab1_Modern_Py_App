@@ -50,7 +50,6 @@ class MyWidget(QMainWindow, Ui_MainWindow):
                 self.after.setText("Winner user")
 
     def start(self):
-        global count
         count = self.Start_line.text()
         if count != "":
             self.after.setText(count)
