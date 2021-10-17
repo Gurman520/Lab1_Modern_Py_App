@@ -1,11 +1,11 @@
-dic = [["qwertyuiop"], ['asdfghjkl'], ['zxcvbnm']]
+dic = [["qwertyuiop"], ["asdfghjkl"], ["zxcvbnm"], ["йцукенгшщзхъ"], ["фывапролджэ"], ["ячсмитьбю"]]
 
 def test(password):
     flag_l = 0
     for i in range(len(password) - 2):
         a = password[i:i+3]
         for d in range(len(dic)):
-            b = str(dic[0])
+            b = str(dic[d])
             if b.find(a) != -1:
                 flag_l = 1
     flag_A = 0
