@@ -92,7 +92,7 @@ def preobr(phone_number):
     for i in range(start, len(phone_number), 1):
         if phone_number[i].isdigit():
             N += phone_number[i]
-    print(N)
+    return N
 
 
 def check_number(phone_number):
