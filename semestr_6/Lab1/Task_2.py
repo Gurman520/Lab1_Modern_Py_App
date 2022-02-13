@@ -1,5 +1,6 @@
 from zipfile import ZipFile
 import os
+import shutil
 
 
 def resize(size):
@@ -8,16 +9,23 @@ def resize(size):
     while size > 1024:
         size /= 1024
         index += 1
-    print(round(size), fff[index])
+    return str(round(size)) + fff[index]
 
 
-with ZipFile('1 OS/archive.zip') as myzip:
-    for name in myzip.namelist():
-        # print(name)
-        items = name.rstrip("/").split("/")
-        if os.path.isfile(name):
-            size = os.path.getsize(name)
-            print(1)
-            print("  "*(len(items)-1) + items[-1], resize(size))
+global_path_in = './1 OS/archive.zip'
+global_path_out = '.\\arch'
+archive = ZipFile(global_path_in, 'r')
+archive.extractall(global_path_out)
+archive.close()
+count = 0
+
+for currentdir, dirs, files in os.walk(global_path_out):
+    items = currentdir.rstrip("\\").split("\\")
+    for name in files:
+        if os.path.isfile(currentdir + '/' + name):
+            size = os.path.getsize(currentdir + '/' + name)
+            print("  "*(len(items) - 2) + name, resize(size))
         else:
-            print("  " * (len(items) - 1) + items[-1])
+            print("  " * (len(items) - 2) + name)
+
+shutil.rmtree(global_path_out)

@@ -12,15 +12,14 @@ def resize(size):
 
 rezult = {}
 size = 0
-glob = "C:/Program Files"
+glob = "C:\\Users\\Роман Сулима\\Documents"
 global_path = os.listdir(glob)
 for path in global_path:
     size = 0
-    for currentdir, dirs, files in os.walk(glob +'/'+ path):
+    for currentdir, dirs, files in os.walk(glob +'\\'+ path):
         for name in files:
-            size += os.path.getsize(currentdir + '/' + name)
+            size += os.path.getsize(currentdir + '\\' + name)
     rezult[path] = size
 rezult = sorted(rezult.items(), key=lambda x: x[1], reverse=True)
 for i in range(10):
     print(rezult[i][0], resize(rezult[i][1]))
-

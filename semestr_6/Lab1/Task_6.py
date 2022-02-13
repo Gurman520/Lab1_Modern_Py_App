@@ -8,7 +8,7 @@ def job():
         print("Ку ")
 
 
-schedule.every().hour.at(":00").do(job)
+schedule.every().hour.at(":19").do(job)
 
 
 while True:

@@ -13,5 +13,5 @@ def resize(size, path):
 names = os.listdir(os.getcwd())
 for name in names:
     if os.path.isfile(name):
-        size = os.path.getsize(name)
-        resize(size, name)
+        s_size = os.path.getsize(name)
+        resize(s_size, name)

@@ -11,8 +11,8 @@ def job():
             print(message)
 
 
-schedule.every().hour.at(":00").do(job)
-# schedule.every(10).seconds.do(job)
+# schedule.every().hour.at(":00").do(job)
+schedule.every(10).seconds.do(job)
 
 message = input("Сообщение которое должна выводить программа: ")
 slt = input("Время сна: ")
