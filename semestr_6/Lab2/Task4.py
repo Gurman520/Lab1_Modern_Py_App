@@ -8,7 +8,7 @@ parser.add_argument("file_out", type=str)
 
 parser.add_argument("--upper", action="store_true", default=False)
 
-parser.add_argument("--lines", type=int, default=0)
+parser.add_argument("--lines", type=int, default=90000)
 
 args = parser.parse_args()
 f_out = open(args.file_out, 'w')
