@@ -3,22 +3,25 @@ import argparse
 
 def format_text_block(frame_height, frame_width, file_name):
     height = 0
-    with open(file_name) as file:
-        while height < frame_height:
-            line = ''
-            for width in range(frame_width):
-                st = file.read(1)
-                if st == '\n':
-                    print()
-                    height += 1
+    try:
+        with open(file_name) as file:
+            while height < frame_height:
+                line = ''
+                for width in range(frame_width):
                     st = file.read(1)
-                    while st == '\n':
+                    if st == '\n':
                         print()
                         height += 1
                         st = file.read(1)
-                line += st
-            height += 1
-            print(line)
+                        while st == '\n':
+                            print()
+                            height += 1
+                            st = file.read(1)
+                    line += st
+                height += 1
+                print(line)
+    except Exception as e:
+        print(str(e))
 
 
 parser = argparse.ArgumentParser()
