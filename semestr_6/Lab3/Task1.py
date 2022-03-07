@@ -197,12 +197,11 @@ def carousel():
     return f'''<!doctype html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}"/>
     <title>Карусель марса</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
     .carousel {{ /*код слайдера размер под разные картики высота*/
-  width: 100%;
+  width: 70%;
 }}
 .carousel-item img {{
   width: 70%;
@@ -210,8 +209,9 @@ def carousel():
   object-fit: cover; /*код слайдера размер под разные картики высота*/
 }}
     </style>
+    <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}"/>
 </head>
-<body bgcolor="#A0522D">
+<body>
 <h1>Фото ладшафта Марса</h1>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
