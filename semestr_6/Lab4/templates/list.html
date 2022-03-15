@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if li == 'ol' %}
+        {% for i in range(10) %}
+            <h2>{{i+1}}{{" - "}}{{Prof[i]}}</h2>
+        {% endfor %}
+    {% elif li == 'ul' %}
+        {% for i in range(10) %}
+            <h2>{{"- "}}{{Prof[i]}}</h2>
+        {% endfor %}
+    {% else %}
+        <h2>Не верный параметр</h2>
+    {% endif %}
+{% endblock %}

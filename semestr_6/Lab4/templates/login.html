@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Авторизация</h1>
+<form name="form" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.f_name.label }}<br>
+        {{ form.f_name(class="form-control") }}<br>
+        {% for error in form.f_name.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.s_name.label }}<br>
+        {{ form.s_name(class="form-control") }}<br>
+        {% for error in form.s_name.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(class="form-control") }}<br>
+        {% for error in form.email.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <p>
+        {{ form.gender.label }}<br>
+        {{ form.gender(class="form-control") }}<br>
+        {% for error in form.gender.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <p>
+        {{ form.profesional.label }}<br>
+        {{ form.profesional(class="form-control") }}<br>
+        {% for error in form.profesional.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <p>
+        {{ form.motiv.label }}<br>
+        {{ form.motiv(class="form-control") }}<br>
+        {% for error in form.motiv.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <div class="form-group">
+            {{ form.photo.label }}<br>
+            {{ form.photo() }}<br>
+        </div>
+
+    <p>{{ form.save() }} {{ form.save.label }}</p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}

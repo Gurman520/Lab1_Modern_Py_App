@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if number == "random"%}
+        {% set number = range(1, crew|length + 1) | random %}
+    {% endif %}
+    {% if number in range(1, crew|length + 1) %}
+        <h2>{{ crew[number - 1].f_name }} {{ crew[number - 1].s_name }}</h2>
+        <img src="../static/members/photo/{{ crew[number - 1].link }}"
+             alt="Фото '{{ crew[number - 1].f_name }} {{ crew[number - 1].s_name }}'">
+        <p>
+            {% for i in crew[number - 1].prof | sort %}
+                {{ i }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% else %}
+        <p>Указан неверный номер</p>
+    {% endif %}
+{% endblock %}

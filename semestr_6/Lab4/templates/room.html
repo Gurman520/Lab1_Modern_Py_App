@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table border="2">
+        <tr>
+            <td>Цвет стен</td>
+            <td>Эмблема</td>
+        </tr>
+        <tr>
+            <td>{% if sex == "male" %}Темно синий{% elif sex == "female" %}Бежевый{% else %}Неверный параметр{% endif %}</td>
+            <td>
+                {% if age < 21 %}
+                    <img src="../../static/emblems/young.png">
+                {% elif age >= 21 %}
+                    <img src="../../static/emblems/old.png">
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+{% endblock %}
