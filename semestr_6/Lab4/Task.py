@@ -80,5 +80,21 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
+put = ["m1.jpg", "m2.jpg", "m3.jpg"]
+number = 4
+
+
+@app.route('/galery', methods=['GET', 'POST'])
+def galery():
+    global number
+    if request.method == 'POST':
+        f = request.files['file'].read()
+        with open("static/img/m" + str(number) + ".jpg", "wb") as file:
+            put.append(f"m{number}.jpg")
+            number += 1
+            file.write(f)
+    return render_template('galery.html', title='Галерея', puti=put)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
