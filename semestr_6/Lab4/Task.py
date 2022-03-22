@@ -51,7 +51,7 @@ def room(sex, age):
 def send_email(to_addr, from_addr, body_text):
     server = smtplib.SMTP(host='smtp.gmail.com', port=587)
     server.starttls()
-    server.login(from_addr, "523Rdfhnbhf523")
+    server.login(from_addr, "*******")
     server.sendmail(from_addr, to_addr, body_text)
     server.quit()
 
