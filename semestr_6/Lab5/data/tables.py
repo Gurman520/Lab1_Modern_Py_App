@@ -8,6 +8,10 @@ colab_table = Table("Colab", SqlAlchemyBase.metadata,
                     Column('job_id', ForeignKey('job.id')),
                     Column('user_id', ForeignKey('user.id')))
 
+colab_table_2 = Table("Colab_2", SqlAlchemyBase.metadata,
+                      Column('dep_id', ForeignKey('department.id')),
+                      Column('user_id', ForeignKey('user.id')))
+
 
 class Job(SqlAlchemyBase):
     __tablename__ = 'job'
@@ -48,7 +52,9 @@ class User(SqlAlchemyBase):
     modified_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                       default=datetime.datetime.now)
     collaborators = orm.relationship("Job", secondary=colab_table, back_populates="user", overlaps="collaborators")
+    members = orm.relationship("Department", secondary=colab_table_2, back_populates="user", overlaps="members")
     job = orm.relation("Job", overlaps='user')
+    department = orm.relation("Department", overlaps='user')
 
     def __repr__(self):
         return f"Colonist {self.id} {self.surname} {self.name}"
@@ -58,3 +64,22 @@ class User(SqlAlchemyBase):
 
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
+
+
+class Department(SqlAlchemyBase):
+    __tablename__ = 'department'
+
+    id = sqlalchemy.Column(sqlalchemy.Integer,
+                           primary_key=True, autoincrement=True)
+
+    title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+
+    chief = sqlalchemy.Column(sqlalchemy.Integer,
+                              ForeignKey('user.id'))
+
+    members = orm.relationship("User", secondary=colab_table_2, back_populates="department")
+
+    email = sqlalchemy.Column(sqlalchemy.String,
+                              index=True, unique=True, nullable=True)
+
+    user = orm.relation('User')

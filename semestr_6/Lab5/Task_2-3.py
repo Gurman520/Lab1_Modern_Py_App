@@ -1,5 +1,5 @@
 from data import db_session
-from data.tables import Job, User
+from data.tables import Job, User, Department
 
 
 def add_user(surname, name, age, position, speciality, addres, email):
@@ -38,6 +38,21 @@ def add_jobs(team_leader, job, work_size, collaborator, start_date, end_date, is
     db_sess.commit()
 
 
+def add_department(title, chief, members, email):
+    dept_n = Department()
+    db_sess = db_session.create_session()
+
+    dept_n.title = title
+    dept_n.chief = chief
+    for i in members:
+        user = db_sess.query(User).filter(User.id == i).first()
+        dept_n.members.append(user)
+    dept_n.email = email
+
+    db_sess.add(dept_n)
+    db_sess.commit()
+
+
 def main():
     db_session.global_init("db/mars_explorer.db")
     # добавление записи
@@ -50,8 +65,10 @@ def main():
     add_user("Scott", "Saymon", 17, "middle doctor", "doctor", "module_1", "Saimon_Sc@mars.org")
     add_user("Scott", "Sofi", 15, "Passenger", "Passenger", "module_1", "scott_sofi@mars.org")
     add_jobs(1, "deployment of residential modules 1 and 2", 15, [2, 3], None, None, False)
-    add_jobs(1, "deployment of residential modules 3", 9, [2], None, None, False)
+    add_jobs(1, "deployment of residential modules 3", 9, [2, 4], None, None, False)
     add_jobs(1, "Setting up a life support system", 40, [7, 8, 4], None, None, False)
+
+    add_department("геологическая разведка", 3, [2, 5, 4], "geolog_raz@mars.org")
 
 
 if __name__ == '__main__':
