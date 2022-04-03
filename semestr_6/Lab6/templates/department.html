@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Dept Log</h1>
+{% for item in dept%}
+<h3>Action # {{item.id}}</h3>
+<table border="2">
+        <tr>
+            <td width="30%">Title</td>
+            <td width="20%">Chief</td>
+            <td width="20%">List of members</td>
+            <td width="30%">Email</td>
+        </tr>
+        <tr>
+            <td>{{item.title}}</td>
+            <td>{{item.user.name}} {{item.user.surname}}</td>
+            <td>{% for it in item.members%} {{it.id}} {% endfor %}</td>
+            <td>{{item.email}}</td>
+        </tr>
+    </table> </br>
+{% if current_user.is_authenticated and (current_user == item.user or current_user.id == 1) %}
+    <div>
+        <a href="/department/{{ item.id }}" class="btn btn-warning">
+            Изменить
+        </a>
+        <a href="/dept_delete/{{ item.id }}" class="btn btn-danger">
+            Удалить
+        </a>
+    </div>
+{% endif %}
+{% endfor %}
+</br>
+{% if current_user.is_authenticated %}
+    <a href="/dept_register" class="btn btn-secondary">Добавить запись о работе</a>
+{% endif %}
+{% endblock %}
